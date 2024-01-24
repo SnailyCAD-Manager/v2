@@ -1,6 +1,6 @@
 {
     "name": "snailycad-manager-v2",
-    "version": "2.3.0",
+    "version": "2.3.1",
     "description": "Easily manage SnailyCAD v4 with an easy-to-understand GUI.",
     "main": "index.js",
     "scripts": {
@@ -17,7 +17,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/WhitigolProd/SnailyCAD-Manager.git"
+        "url": "git+https://github.com/SnailyCAD-Manager/v2.git"
     },
     "keywords": [
         "SnailyCAD",
@@ -31,9 +31,9 @@
     "author": "Whitigol Web Design",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/WhitigolProd/SnailyCAD-Manager/issues"
+        "url": "https://github.com/SnailyCAD-Manager/v2/issues"
     },
-    "homepage": "https://github.com/WhitigolProd/SnailyCAD-Manager#readme",
+    "homepage": "https://github.com/SnailyCAD-Manager/v2#readme",
     "config": {
         "forge": {
             "packagerConfig": {},

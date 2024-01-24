@@ -90,7 +90,7 @@ module.exports.createMenu = (mainWindow) => {
                             label: 'SnailyCAD Manager GitHub',
                             click: () => {
                                 shell.openExternal(
-                                    'https://github.com/WhitigolProd/SnailyCAD-Manager'
+                                    'https://github.com/SnailyCAD-Manager/v2'
                                 );
                             },
                         },
@@ -109,7 +109,7 @@ module.exports.createMenu = (mainWindow) => {
                                 detail: `
                                 Made by Whitigol Web Design
                                 App Version: ${app.getVersion()}
-                                Discord: Whitigol#2122
+                                Discord: @whitigol
                                 `
                                     .split('\n')
                                     .map((s) => s.trim())
@@ -161,7 +161,7 @@ module.exports.createMenu = (mainWindow) => {
                     icon: path.join(__dirname, '/public/img/github.png'),
                     click: () => {
                         shell.openExternal(
-                            'https://github.com/WhitigolProd/SnailyCAD-Manager/issues/new'
+                            'https://github.com/SnailyCAD-Manager/v2/issues/new'
                         );
                     },
                 },

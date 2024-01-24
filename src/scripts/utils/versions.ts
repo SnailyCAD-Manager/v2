@@ -16,7 +16,7 @@ const checkAppVersion = async () => {
             data = JSON.parse(data);
             versions.app = current;
             let latest = data.version;
-            updateDownloadUrl = `https://github.com/WhitigolProd/SnailyCAD-Manager/releases/latest/download/snailycad-manager.exe`;
+            updateDownloadUrl = `https://github.com/SnailyCAD-Manager/v2/releases/latest/download/snailycad-manager.exe`;
             $('#app_download_link').attr(
                 'onclick',
                 'launchURL(updateDownloadUrl)'
