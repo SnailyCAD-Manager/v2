@@ -7,7 +7,7 @@ let updateDownloadUrl: string;
 
 const checkAppVersion = async () => {
     await $.get(
-        'https://raw.githubusercontent.com/WhitigolProd/SnailyCAD-Manager/master/package.json',
+        'https://raw.githubusercontent.com/SnailyCAD-Manager/v2/main/package.json',
         { cache: false }
     )
         .then((data) => {
@@ -16,8 +16,7 @@ const checkAppVersion = async () => {
             data = JSON.parse(data);
             versions.app = current;
             let latest = data.version;
-            let latestExeName = latest.replace(/\./g, '_');
-            updateDownloadUrl = `https://github.com/WhitigolProd/SnailyCAD-Manager/releases/download/${latest}/snailycad_manger_${latestExeName}.exe`;
+            updateDownloadUrl = `https://github.com/WhitigolProd/SnailyCAD-Manager/releases/latest/download/snailycad-manager.exe`;
             $('#app_download_link').attr(
                 'onclick',
                 'launchURL(updateDownloadUrl)'
