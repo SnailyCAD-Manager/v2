@@ -1,0 +1,84 @@
+<dialog id="app_settings">
+    <article>
+        <header>
+            <span class="flex flex-row items-center"
+                >App Settings
+                <span class="muted sm ml-2">Modify app Settings</span>
+            </span>
+            <a
+                href="#"
+                class="close"
+                onclick="modal('#app_settings').close();"
+            ></a>
+        </header>
+
+        <div
+            class="flex flex-col items-center p-3 backdrop-brightness-90 rounded mb-3"
+        >
+            <span class="text-md mb-2">Remote Server</span>
+            <span class="text-sm muted mb-2">
+                Start a remote server to access the manager from anywhere!
+            </span>
+            <span class="mb-2"
+                >Status
+                <code id="remote_server_status" class="text-red-500"
+                    >Offline</code
+                >
+            </span>
+            <div class="row center-justify">
+                <div
+                    class="btn md success"
+                    id="start_remote_server"
+                    onclick="startRemoteServer();"
+                >
+                    <i class="mio">play_arrow</i>
+                    <span>Start Remote Server</span>
+                </div>
+                <div
+                    class="btn md error hidden"
+                    id="stop_remote_server"
+                    onclick="stopRemoteServer();"
+                >
+                    <i class="mio">stop</i>
+                    <span>Stop Remote Server</span>
+                </div>
+                <div
+                    class="btn md info"
+                    onclick="modal('#remote_server').open(); loadServerSettings();"
+                >
+                    <i class="mio">settings_remote</i>
+                    <span>Server Settings</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delete App Data -->
+        <div class="flex flex-row items-center justify-center mb-3">
+            <div
+                class="btn md error"
+                onclick="modal('#confirm_app_data_delete').open();"
+            >
+                <i class="mio">delete</i>
+                <span>Delete App Data (App Reset)</span>
+            </div>
+        </div>
+
+        <!-- Webhook -->
+        <div class="flex flex-row items-center justify-center mb-3">
+            <div
+                class="btn md info"
+                onclick="modal('#webhook_settings').open(); webhooks.settings.load();"
+            >
+                <i class="mio">notifications</i>
+                <span>Webhook Settings</span>
+            </div>
+        </div>
+
+        <footer>
+            <div class="btn md error" onclick="modal('#app_settings').close();">
+                <i class="mio">close</i>
+                <span>Close Settings</span>
+            </div>
+        </footer>
+    </article>
+</dialog>

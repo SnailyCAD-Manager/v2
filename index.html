@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./app/styles/dist/index.min.css" />
+        <link rel="stylesheet" href="./app/styles/dist/tailwind-compile.css" />
+        <title>SnailyCAD Manager</title>
+        <script
+            src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"
+            defer
+        ></script>
+        <script src="./app/scripts/load.js" defer></script>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css"
+        />
+    </head>
+    <body data-theme="dark">
+        <!-- <div class="bg">Set Bakcground</div> -->
+
+        <!-- Partials -->
+        <!-- Titlebar -->
+        <!-- <div class="titlebar" partial="./src/partials/titlebar.html"></div> -->
+
+        <!-- Main Content -->
+        <div class="main" partial="./src/partials/main.html"></div>
+
+        <!-- Requirements -->
+        <div
+            class="fullscreen requirements"
+            partial="./src/partials/requirements.html"
+        ></div>
+
+        <!-- App Update -->
+        <div class="appVersion" partial="./src/partials/appVersion.html"></div>
+
+        <!-- Setup Wizard -->
+        <dialog id="setup_wizard" partial="./src/partials/wizard.html"></dialog>
+
+        <!-- App Settings -->
+        <div class="appSettings" partial="./src/partials/appTools.html"></div>
+
+        <!-- Log Output -->
+        <dialog partial="./src/partials/output.html" id="log_output"></dialog>
+
+        <!-- Tools -->
+        <dialog partial="./src/partials/cadTools.html" id="toolbox"></dialog>
+
+        <!-- ENV Editor -->
+        <!-- UI Editor -->
+        <dialog partial="./src/partials/env.html" id="env_editor"></dialog>
+        <!-- Code Editor -->
+        <dialog partial="./src/partials/envCode.html" id="env_code"></dialog>
+
+        <!-- About -->
+        <dialog partial="./src/partials/about.html" id="about"></dialog>
+
+        <!-- Remote Server Settings -->
+        <dialog
+            partial="./src/partials/remoteSettings.html"
+            id="remote_server"
+        ></dialog>
+
+        <!-- Confirm App Data Delete -->
+        <dialog id="confirm_app_data_delete">
+            <article>
+                <header>
+                    <div class="text-red-500">
+                        <i class="mio">warning</i>
+                        <span>Are you sure?</span>
+                    </div>
+                </header>
+                <p class="text-red-400">
+                    This will delete all app data, and send you back to the
+                    setup wizard.
+                </p>
+                <footer>
+                    <div
+                        class="btn md success"
+                        onclick="localStorage.clear(); location.reload();"
+                    >
+                        <i class="mio">check</i>
+                        <span>Confirm</span>
+                    </div>
+                    <div
+                        class="btn md error"
+                        onclick="modal('#app_settings').open(); toast.info('Action Canceled');"
+                    >
+                        <i class="mio">close</i>
+                        <span>Cancel</span>
+                    </div>
+                </footer>
+            </article>
+        </dialog>
+
+        <!-- Webhook Settings -->
+        <dialog
+            partial="./src/partials/webhookSettings.html"
+            id="webhook_settings"
+        ></dialog>
+
+        <!-- CAD Notes -->
+        <dialog partial="./src/partials/cadNotes.html" id="cad_notes"></dialog>
+
+        <!-- Pre Release Warning -->
+        <dialog
+            partial="./src/partials/preReleaseWarn.html"
+            id="pre_release"
+        ></dialog>
+
+        <!-- End Partials -->
+
+        <!-- Message -->
+        <span class="muted" id="system_message">APP_ONLINE</span>
+
+        <!-- Log Button -->
+        <div
+            class="btn sm warning logOpen"
+            onclick="modal('#log_output').open();"
+        >
+            <i class="mio">terminal</i>
+        </div>
+
+        <script defer>
+            let exports = {};
+            window.$ = window.jQuery = require('jquery');
+        </script>
+
+        <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.13.2/src-noconflict/ace.min.js"></script>
+    </body>
+</html>

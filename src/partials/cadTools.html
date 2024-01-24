@@ -1,0 +1,60 @@
+<article style="width: 90%">
+    <header>
+        Toolbox
+        <a href="#" class="close" onclick="modal('#toolbox').close();"></a>
+    </header>
+    <div class="row center-justify cetner-itms">
+        <div
+            class="btn md info"
+            data-tooltip="Changing these variables can cause issues! Continue with caution."
+            onclick="modal('#env_editor').open(); createEnvInputs(); loadEnvValues();"
+        >
+            <i class="mio">list</i>
+            <span>ENV Editor</span>
+        </div>
+    </div>
+    <div class="row center-justify center-itms">
+        <div
+            class="btn md error"
+            onclick="api.post('/stop', ''); toast.warning('Forcing CAD Shutdown')"
+        >
+            <i class="mio">dangerous</i>
+            <span>Force Shutdown CAD</span>
+        </div>
+    </div>
+    <!-- Open CAD Directory using cadDir from Storage -->
+    <div class="row center-justify center-itms">
+        <div class="btn md info" onclick="launchURL(storage('cadDir').read());">
+            <i class="mio">folder</i>
+            <span>Open CAD Directory</span>
+        </div>
+    </div>
+    <!-- Reset Node Modules -->
+    <div class="row center-justify center-itms">
+        <div
+            class="btn md error"
+            id="reset_node_modules"
+            onclick="api.post('/reset', ''); toast.warning('Resetting Node Modules')"
+        >
+            <i class="bi bi-exclamation-diamond"></i>
+            <span>Reset Node Modules</span>
+        </div>
+    </div>
+    <!-- Force CAD Update -->
+    <div class="row center-justify center-itms">
+        <div
+            class="btn md error"
+            id="force_update"
+            onclick="modal('#pre_release').open();"
+        >
+            <i class="mio">warning</i>
+            <span>Force CAD Update</span>
+        </div>
+    </div>
+    <footer>
+        <div class="btn md error" onclick="modal('#toolbox').close();">
+            <i class="mio">close</i>
+            <span>Close Toolbox</span>
+        </div>
+    </footer>
+</article>

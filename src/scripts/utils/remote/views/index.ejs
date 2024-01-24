@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>SnailyCAD Manager - Remote</title>
+        <link
+            rel="shortcut icon"
+            href="/public/icon-white.png"
+            type="image/x-icon"
+        />
+
+        <link rel="stylesheet" href="index.min.css" />
+        <link rel="stylesheet" href="tailwind-compile.css" />
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"
+            defer
+        ></script>
+        <script src="./app/scripts/load.js" defer></script>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css"
+        />
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="/ace/ace.js" defer></script>
+        <script src="/index.js" defer></script>
+        <script src="/toast.js" defer></script>
+        <script src="/status.js" defer></script>
+        <script src="/control.js" defer></script>
+        <script src="/env.js" defer></script>
+    </head>
+    <body
+        class="container flex flex-col h-screen justify-center items-center gap-2"
+        style="background-color: var(--background-color)"
+    >
+        <article>
+            <header>
+                <div>
+                    <span>SnailyCAD</span>
+                    <span class="muted text-xs"
+                        >v<span id="cad_version">Loading</span></span
+                    >
+                </div>
+            </header>
+            <div
+                class="flex flex-col mb-2 items-center justify-evenly text-center"
+            >
+                <span class="text-xs muted"
+                    >SnailyCAD Remote Server provides the basic necessities to
+                    remotely manage your SnailyCAD Instance.</span
+                >
+            </div>
+            <div class="row center-itms center-justify">
+                <div id="snailyStatus">
+                    SnailyCAD Status:
+                    <code
+                        ><span id="status_loading" style="display: none"
+                            >LOADING</span
+                        ><span id="status_client" class="text-red-500"
+                            >CLIENT</span
+                        >&nbsp;|&nbsp;<span class="text-red-500" id="status_api"
+                            >API</span
+                        ></code
+                    >
+                </div>
+            </div>
+            <div class="flex flex-row items-center justify-evenly">
+                <div
+                    class="btn success"
+                    id="start_cad"
+                    onclick="remControl.start();"
+                >
+                    <i class="material-symbols-outlined">play_arrow</i>
+                    <span>Start SnailyCAD</span>
+                </div>
+                <div
+                    class="btn warning"
+                    id="starting_cad"
+                    onclick="toast.warning('Please Wait...')"
+                    style="display: none"
+                >
+                    <span aria-busy="true"></span>
+                    <span>Loading</span>
+                </div>
+                <div
+                    class="btn error hidden"
+                    id="stop_cad"
+                    onclick="remControl.stop();"
+                    style="display: none"
+                >
+                    <i class="material-symbols-outlined">stop</i>
+                    <span>Stop SnailyCAD</span>
+                </div>
+            </div>
+        </article>
+
+        <article>
+            <header>
+                <div>
+                    <span>Additional Tools</span>
+                    <span class="text-xs muted"
+                        >Here's some additional tools to help you manage your
+                        SnailyCAD Instance!</span
+                    >
+                </div>
+            </header>
+
+            <div class="flex flex-row justify-center items-center gap-3">
+                <div
+                    class="btn md info"
+                    onclick="openEnvEditor();"
+                    id="edit_env_btn"
+                >
+                    <div class="load"></div>
+                    <i class="material-symbols-outlined">edit</i>
+                    <span>ENV Editor</span>
+                </div>
+                <div class="btn md error" onclick="remControl.stop();">
+                    <i class="material-symbols-outlined">dangerous</i>
+                    <span>Force CAD Shutdown</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- ENV Editor -->
+        <dialog id="env_editor_window">
+            <article>
+                <header>
+                    <div>
+                        <span>ENV Editor</span>
+                        <span class="text-xs muted">Edit your .env file!</span>
+                    </div>
+                </header>
+                <div id="editor" class="h-[50vh]"></div>
+                <footer>
+                    <div
+                        class="btn md error mr-3"
+                        onclick="closeEnvEditor();"
+                        id="close_env_btn"
+                    >
+                        <i class="material-symbols-outlined">close</i>
+                        <span>Close</span>
+                    </div>
+                    <div
+                        class="btn md success"
+                        onclick="saveEnvEditor();"
+                        id="save_env_btn"
+                    >
+                        <div class="load"></div>
+                        <i class="material-symbols-outlined">save</i>
+                        <span>Save</span>
+                    </div>
+                </footer>
+            </article>
+        </dialog>
+
+        <span class="fixed bottom-2 left-2 text-xs muted"
+            >This webpage is running atop SnailyCAD Manager v<span
+                id="app_version"
+            ></span
+        ></span>
+
+        <div class="fixed top-0 right-0 m-3 btn md error" onclick="logOut();">
+            <i class="material-symbols-outlined">logout</i>
+            <span>Close Session (Log Out)</span>
+        </div>
+
+        <dialog id="api_unreachable">
+            <article>
+                <header>API Error</header>
+                <div class="flex flex-col items-center justify-center">
+                    <span class="text-center"
+                        >The API is unreachable. Please make sure that the API
+                        is running and that the port is correct.</span
+                    >
+                    <div class="flex flex-row items-center justify-evenly">
+                        <div
+                            class="mt-2 btn md success"
+                            onclick="window.location.reload();"
+                        >
+                            <i class="material-symbols-outlined">refresh</i>
+                            <span>Reload</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </dialog>
+    </body>
+</html>

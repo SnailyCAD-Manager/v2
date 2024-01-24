@@ -1,0 +1,11 @@
+{
+    "typeAcquisition": {
+        "enable": true,
+        "include": ["jquery", "node", "ace"]
+    },
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "CommonJS"
+    },
+    "exclude": ["node_modules"]
+}
